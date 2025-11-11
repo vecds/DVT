@@ -1,0 +1,81 @@
+DATA VISUALIZATION
+Data visualization is the graphical representation of information and data. By using visual 
+elements like charts, graphs, and maps, data visualization tools provide an accessible way to 
+see and understand trends, outliers, and patterns in data. Additionally, it provides an excellent 
+way for employees or business owners to present data to non-technical audiences without 
+confusion.
+Data visualization is the practice of translating information into a visual context, such as a map 
+or graph, to make data easier for the human brain to understand and pull insights from. The 
+main goal of data visualization is to make it easier to identify patterns, trends and outliers in 
+large data sets. The term is often used interchangeably with others, including information 
+graphics, information visualization and statistical graphics.
+
+
+-> Why is data visualization important?
+Data visualization provides a quick and effective way to communicate information in a 
+universal manner using visual information. The practice can also help businesses identify 
+which factors affect customer behaviour; pinpoint areas that need to be improved or need more 
+attention; make data more memorable for stakeholders; understand when and where to place 
+specific products; and predict sales volumes
+
+Main Components of Data Visualization
+1. Data: First of all we need lots of data. Data can be of any type like numerical data, text 
+data or geospatial data.
+
+2. Visual Elements: For instance, Graphics, charts, Overlays, diagrams, figures, maps, 
+tables and other types of data presentations and resumes that comprise infographics.
+
+3. Visualization Techniques: This also includes aspects such as transforming and scaling 
+data, and in some cases indeed selecting the right type of visualization to use.
+
+4. Interactivity: Influential aspects of visualization which could include; The blinking 
+bubbles whenever the cursor is over a particular part of the graph, zooming up or down 
+the size of the graph, or even rotating the graph and/or options to have the different 
+groups or categories on or off among others.
+
+5. Color Palette and Design: New choices on color utilization, font selection, position of 
+elements in unison with the style of design to enhance the usability, visibility and the 
+aesthetic appeal of visualization.
+
+6. Context and Annotations: The additional roles of Titles and Subtitles in the 
+Visualizations and some of the other labels for captions, annotations and legends for 
+further understanding of the analysis.
+
+7. Tools and Platforms: Software that falls under "Other Tools and Applications while 
+developing visualization" Some of the prominent ones are Tableau, Power BI and more 
+programming languages and Libraries are D3. js ,Matplotlib and more.
+
+8. Data Preparation: Data preparation which involves cleaning of data, that is, data 
+cleaning processing, data selection, data reshaping and data condensation that gets a 
+data in the right form so that it can be analyzed and visualized.
+
+9. Data Exploration: Simple methods for analyzing the data for searching the pattern, 
+trend, noise, similarity and correlation other than the techniques.
+
+10. Dashboarding: An aggregate display of the two screens to give an overall view of the 
+data collected as well as endlessly monitoring the indicators by having the two tabbed 
+views on the same screen.
+
+IMPORTANCE OF DATA VISUALIZATION IN BUSINESS INTELLIGENCE
+
+Data visualization is technique for businesses. It helps them understand their data better, make 
+smarter decisions, and stay ahead of the competition. It basically turns boring numbers into 
+easy-to-understand pictures or graphs, helping businesses see what's going on and what they 
+need to do next.
+1. Simplifies Data for Better Understanding: Data visualization makes complex and raw 
+data easy to understand by displaying it in the form of graphs and charts. This helps us 
+see patterns and important information more clearly.
+
+2. Help Us Make Better Decisions: When we can see our data in pictorial form or graphs 
+and chart, it's easier to make smart decisions quickly.
+
+3. Helps In Visualizing Data Easily: Even the people who are not experts in data can 
+understand data easily with the help of visualization. Non-technical people can also 
+understand the data easily with the help of visualization tools, in the form of graphs and 
+charts.
+
+4. Makes Data More Interesting: Visualizations make data more interesting and fun to 
+look at, which encourages more people to use data to help their work.
+
+5. Helps in Tracking Progress: Visual dashboards keeps the track of our progress. They 
+help us see if we're reaching our goals by giving us a clear picture of our progress.
