@@ -1,0 +1,89 @@
+Alias
+An alternative name that you can assign to a field or to a dimension member.
+
+Bin
+A user-defined grouping of measures in the data source.
+
+
+Bookmark
+A .tbm file in the Bookmarks folder in the Tableau repository that contains a single worksheet.
+Much like web browser bookmarks, .tbm files are a convenient way to quickly display different analyses.
+
+
+Calculated Field
+A new field that you create by using a formula to modify the existing fields in your data source.
+
+
+Crosstab
+A text table view. Use text tables to display the numbers associated with dimension members.
+
+
+Dashboard
+A combination of several views arranged on a single page. Use dashboards to compare and 
+  monitor a variety of data simultaneously.
+
+
+Data Pane
+A pane on the left side of the workbook that displays the fields of the data sources to which Tableau is connected.
+The fields are divided into dimensions and measures. The data pane also displays custom fields such as calculations, 
+binned fields, and groups. You build views of your data by dragging fields from the data pane onto the various shelves 
+that are a part of every worksheet.
+
+
+Data Source Page
+A page where you can set up your data source. The data source page generally consists of four main areas − left pane,
+  join area, preview area, and metadata area.
+
+
+Dimension
+A field of categorical data. Dimensions typically hold discrete data such as hierarchies and members that cannot be aggregated.
+Examples of dimensions include dates, customer names, and customer segments.
+
+
+Extract
+A saved subset of a data source that you can use to improve performance and analyze offline. You can create an extract by defining
+filters and limits that include the data you want in the extract.
+
+
+Filters Shelf
+A shelf on the left of the workbook that you can use to exclude data from a view by filtering it using measures and dimensions.
+
+
+Format Pane
+A pane that contains formatting settings that control the entire worksheet, as well as individual fields in the view. 
+When open, the Format pane appears on the left side of the workbook.
+
+
+Marks
+A part of the view that visually represents one or more rows in a data source. A mark can be, for example, a bar, 
+line, or square. You can control the type, color, and size of marks.
+
+
+Marks Card
+A card to the left of the view, where you can drag fields to control mark properties such as type, 
+color, size, shape, label, tooltip, and detail.
+
+
+Pages Shelf
+A shelf to the left of the view that you can use to split a view into a sequence of pages based on the members
+and values in a discrete or continuous field. Adding a field to the Pages shelf is like adding a field to the 
+Rows shelf, except that a new page is created for each new row.
+
+
+Rows Shelf
+A shelf at the top of the workbook that you can use to create the rows of a data table. The shelf accepts any 
+number of dimensions and measures. When you place a dimension on the Rows shelf, Tableau creates headers for
+the members of that dimension. When you place a measure on the Rows shelf, Tableau creates quantitative axes for that measure.
+
+
+Shelves
+Named areas to the left and top of the view. You build views by placing fields onto the shelves. Some shelves are 
+available only when you select certain mark types. For example, the Shape shelf is available only when you select the Shape mark type.
+
+
+Workbook
+A file with a .twb extension that contains one or more worksheets (and possibly also dashboards and stories).
+
+
+Worksheet
+A sheet where you build views of your data by dragging fields onto shelves.
