@@ -1,0 +1,78 @@
+1. What is Tableau and its different products?
+Tableau is a visualization and business intelligence software application that enables users and other organizations to create shareable, 
+interactive dashboards, reports and data visualizations. Users can connect to different data sources with it, transform unprocessed data
+and can be used for data analysis and reporting purposes.
+
+The several products of Tableau include Tableau Desktop (for authoring reports), Tableau Server (for sharing and collaborating on reports), 
+Tableau Online (a cloud-based version) and tableau mobile.
+
+2. What do you understand by Business Intelligence?
+Business Intelligence is a method that utilizes technology for data analysis and information delivery to leaders, managers and employees 
+in making strategic business decisions. As part of the BI process, organizations gather data from internal IT systems and external sources,
+prepare it for analysis, run queries against the data, create data visualizations, 
+BI dashboards and reports and then make the analytics results for making decision related to operations and strategic planning.
+
+4. What are the different data types in Tableau?
+Tableau supports 7 various different data types:
+
+String
+Numerical values
+Date and time values
+Boolean values
+Geographic values
+Date values
+Cluster Values
+
+What is the difference between Measures and Dimensions in Tableau?
+Dimension: Dimensions are categorical fields that segment and describe data such as names, dates or categories.
+Measure: Measures are numerical fields that can be aggregated to perform calculations like sum, average or count.\
+
+What data sources we can connect with Tableau?
+Databases
+Cloud Storage Services
+Web Connectors
+Statistical and Analytics software
+Data Servers and OLAP cubes
+Excel and Text files
+
+What are the different types of joins available in Tableau?
+There are different types of joins in Tableau:
+
+Inner Join: An inner join returns only the rows that have matching values in both tables. 
+          Rows that do not have a match in the other table are excluded from the result.
+Left Join: A left join returns all the rows from the left table and matching rows present in the right table.
+        If there is no match in the right table, null values are included in the result.
+Right Join: A right join returns all the rows from the right table and matching rows present in the left table. 
+        If there is no match in the left table, null values are included.
+Full Outer Join: A full outer join returns all the rows where there is a match in either the left or right table.
+        It includes all the rows from both tables and fills in null values where there is no match.
+
+What is a calculated field 
+A calculated field in Tableau is a user-defined field created by applying a formula or calculation to existing fields in your dataset. 
+It can involve mathematical, string, logical or date operations to generate new insights, measurements or aggregations that are not
+available in the original data. Calculated fields are useful for deriving custom metrics, creating new dimensions or modifying existing data,
+giving you more flexibility in analysis and visualization. They can be used across worksheets, dashboards and reports.
+
+What are the different data aggregation functions in Tableau?
+Tableau has many different data aggregation functions used in Tableau:
+SUM: AVG: MIN: MAX: COUNT: 
+
+ What is a dual-axis plot and how we can create it in Tableau?
+A dual-axis plot in Tableau is a visualization that displays two measures on the same chart using two separate y-axes,
+  making it easier to compare metrics with different scales or units. This type of chart provides a clearer view of 
+  relationships and trends between multiple measures in a single visualization.
+
+
+What is a Dashboard in Tableau?
+A dashboard in Tableau is a collection of multiple visualizations (worksheets), 
+text, images and interactive elements combined in a single view. It is used to 
+present different aspects of data together, allowing users to compare, monitor and interact with insights at once.
+
+Instead of looking at charts separately, a dashboard brings them together for storytelling and decision-making.
+
+Combines multiple views: You can place bar charts, maps, line charts and tables in one place.
+Interactive controls: Filters, parameters and actions like highlight or go-to URL make dashboards dynamic.
+Real-time updates: Refreshes automatically when the underlying data source updates.
+Device-specific layouts: Can be optimized for desktop, tablet or mobile.
+Storytelling: Lets you connect multiple charts into a meaningful narrative for business insights.
+
