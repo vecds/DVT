@@ -1,0 +1,36 @@
+charts in Tableau
+Tableau offers a wide range of charts and different visualizations to help users explore and present the data effectively. 
+Some of the charts in Tableau are:
+
+Bar Chart: They can be used to compare values between categories or to demonstrate the distribution of data across categories. 
+  They help compare categorical data.
+
+Line Chart: For displaying patterns and changes over time, line charts work incredibly well. To show how a single metric evolves, 
+  they are frequently used with time series data.
+
+Area Chart: They are identical to line charts, however with an area chart, the area beneath the line is coloured. 
+To highlight the contrasts between the variables, they are utilized with various multiple variables in the data.
+
+Pie Chart: It displays pieces of an entire. They help demonstrate how data is distributed when each category represents 
+a certain percentage of the total.
+
+Tree Maps: They use layered rectangles to display hierarchical data. They are useful for illuminating hierarchical 
+  structures such as those found in files or organizational directories.
+
+Bubble chart: Bubble charts are useful for comparing and visualizing data points with three separate properties. 
+They are in use when you want to highlight data clusters, demonstrate relationships, etc.
+
+Scatter Plot: They are used to show how two continuous variables relate to one another. 
+  They aid in the data's discovery of correlations, clusters or outliers.
+
+Density Map: The distribution and concentration of data points or values within a 2D space are depicted using density maps.
+
+Heat Map: Data is displayed on a grid using heat maps, where colour denotes value. They can be used to visualize big datasets and spot patterns.
+
+Symbol Map: By adding symbols or markers to a map to indicate information about particular locations, symbol maps are used to portray geographic data.
+
+Gannt Chart: To visualize tasks, their durations and dependencies over time, Gannt charts are used in project management.
+
+Bullet Graph: They are used to monitor advancement toward a goal. They offer a convenient method of showing a measure, a target and performance ranges.
+
+Box Plot(Box and Whisker): They are employed to show the data's distribution and spot outliers. The median, quartiles and possible outliers are displayed.
