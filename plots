@@ -76,3 +76,23 @@ y2 <- c(100,105,84,105,90,99,90,95,94,100,79,112,91,80,85)
 plot(x1, y1, main="Observation of student", xlab="age", ylab="speed", col="red", cex=2)
 points(x2, y2, col="blue", cex=2)
 
+x <- c(10,20,30,40)
+# Display the pie chart
+pie(x)
+pie(x, init.angle = 90)
+
+mylabel <- c("Apples", "Bananas", "Cherries", "Dates")
+pie(x, label = mylabel, main = "Fruits")
+
+colors <- c("blue", "yellow", "green", "black"
+pie(x, label = mylabel, main = "Fruits", col = colors)
+
+
+
+x <- c("A", "B", "C", "D")
+y <- c(2, 4, 6, 8)
+barplot(y, names.arg = x)
+barplot(y, names.arg = x, col = "red")
+barplot(y, names.arg = x, density = 10)
+barplot(y, names.arg = x, width = c(1,2,3,4))
+barplot(y, names.arg = x, horiz = TRUE
