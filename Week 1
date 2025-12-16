@@ -23,7 +23,7 @@ plot(data$x, data$y, main "Customized Scatter Plot", xlab "X-axis label", ylab =
 This code will create a scatter plot with red points and different plotting characters.
 
 
-4.Saving the Plot: Once you are satisfied with your plot, you can save it to a file using the pdf(), png(). jpeg().svg() functions. 
+4.Saving the Plot: Once you are satisfied with your plot, you can save it to a file using the pdf(), png(). jpeg() functions. 
   For example, to save the plot as a PDF file:
 #Save the plot as a PDF file
 
