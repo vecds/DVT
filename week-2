@@ -1,54 +1,59 @@
-such as Multivariate Analysis, PCA, LDA, Correlation 2. Statistical Analysis regression and analysis of variance
+2. Statistical Analysis -such as Multivariate Analysis, PCA, LDA, Correlation regression and analysis of variance.
 
-Program
 
-In R, a popular open-source programming language and environment for statistical computing and graphics, you can perform various statistical analyses including multivariate analysis, PCA, LDA, correlation analysis, regression analysis, and analysis of variance using built-in functions or packages
 
-Multivariate Analysis:
+In R, a popular open-source programming language and environment for statistical computing and graphics, you can perform 
+  various statistical analyses including multivariate analysis, PCA, LDA, correlation analysis, regression analysis, and 
+  analysis of variance using built-in functions or packages
+
+1.Multivariate Analysis:
 
 For multivariate analysis, you can use functions from the base R or specialized packages such as "stats" and "MASS".
 
-Common functions include prcomp() for Principal Component Analysis (PCA) and Ida() for Linear Discriminant Analysis (LDA).
+Common functions include prcomp() for Principal Component Analysis (PCA) and lda() for Linear Discriminant Analysis (LDA).
 
 2. PCA
 
-To perform PCA in R, you can use the proomp() function from the "stats"
-
-package.
+To perform PCA in R, you can use the prcomp() function from the "stats" package.
 
 #Assuming "data" is your dataset
 
-pca_result prcomp(data, scale. = TRUE) summary(pca_result)
+pca_result<- prcomp(data, scale. = TRUE) 
+summary(pca_result)
 
 3. LDA
 
-For LDA, you can use the Ida() function from the "MASS" package.
+For LDA, you can use the lda() function from the "MASS" package.
 
-library(MASS) Ida_result <- Ida(Species, data iris) summary(Ida_result)
+library(MASS) 
+lda_result <- Ida(Species~., data=iris) 
+summary(lda_result)
 
-Correlation Analysis:
+4.Correlation Analysis:
 
 To compute correlations between variables, you can use the cor() function.
 
-cor matrix <- cor(data)
+cor_matrix <- cor(data)
 
 5. Regression Analysis:
 
-For regression analysis, you can use functions like Im() for linear regression, gim() for generalized linear models, and others,
+For regression analysis, you can use functions like lm() for linear regression, glm() for generalized linear models, and others,
 
 #Assuming 'data' contains your variables model
 
-Im(dependent_variable independent variablel independent variable2, data=
-
-data) summary(model)
+lm(dependent_variable~independent _variablel1+independent_variable2, data=data) 
+summary(model)
 
 6. Analysis of Variance (ANOVA):
 
-For ANOVA, you can use functions like anv() for one-way ANOVA and Im() followed by anova) for more complex models.
+For ANOVA, you can use functions like aov() for one-way ANOVA and lm() followed by anova() for more complex models.
 
-Im(dependent_variable factor variable, data data) anova_result< anova(model)
+#Assuming 'data' contains your variables.
+model<-lm(dependent_variable~factor_variable, data=data)
+anova_result<-anova(model)
 
-Remember to install and load necessary packages (install.packages() and library()) before using functions from external packages. Additionally, always refer to the documentation for each function/package for more detailed usage instructions and options
+Remember to install and load necessary packages (install.packages() and library()) before using functions from external packages. 
+Additionally, always refer to the documentation for each function/package for more detailed usage instructions and options.
 
 
-#Assuming 'data' contains your variables model
+
