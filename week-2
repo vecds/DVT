@@ -1,7 +1,5 @@
 2. Statistical Analysis -such as Multivariate Analysis, PCA, LDA, Correlation regression and analysis of variance.
 
-
-
 In R, a popular open-source programming language and environment for statistical computing and graphics, you can perform 
   various statistical analyses including multivariate analysis, PCA, LDA, correlation analysis, regression analysis, and 
   analysis of variance using built-in functions or packages
@@ -13,20 +11,24 @@ For multivariate analysis, you can use functions from the base R or specialized 
 Common functions include prcomp() for Principal Component Analysis (PCA) and lda() for Linear Discriminant Analysis (LDA).
 
 2. PCA
+PCA is a technique used for dimensionality reduction, finding the dimensions (principal components) that capture
+  most of the variation in the data.
 
 To perform PCA in R, you can use the prcomp() function from the "stats" package.
 
-#Assuming "data" is your dataset
 
-pca_result<- prcomp(data, scale. = TRUE) 
+data<-iris[, 1:4]  
+pca_result <- prcomp(data, center = TRUE, scale. = TRUE)
+print(pca_result)
 summary(pca_result)
 
 3. LDA
-
+LDA is a classification technique used to find linear combinations of variables that best separate predefined groups. 
+  It requires the MASS package
 For LDA, you can use the lda() function from the "MASS" package.
 
 library(MASS) 
-lda_result <- Ida(Species~., data=iris) 
+lda_result <- lda(Species~., data=iris) 
 summary(lda_result)
 
 4.Correlation Analysis:
@@ -39,10 +41,14 @@ cor_matrix <- cor(data)
 
 For regression analysis, you can use functions like lm() for linear regression, glm() for generalized linear models, and others,
 
-#Assuming 'data' contains your variables model
+#Assuming 'data' contains your variables 
 
-lm(dependent_variable~independent _variablel1+independent_variable2, data=data) 
+///model<-lm(dependent_variable ~ independent_variablel1+independent_variable2, data=data) 
+model <- lm(mpg ~ hp + wt, data = mtcars)
 summary(model)
+coef(model)
+plot(model)
+
 
 6. Analysis of Variance (ANOVA):
 
@@ -50,7 +56,11 @@ For ANOVA, you can use functions like aov() for one-way ANOVA and lm() followed 
 
 #Assuming 'data' contains your variables.
 model<-lm(dependent_variable~factor_variable, data=data)
-anova_result<-anova(model)
+anova_model <- lm(Sepal.Length ~ Species, data = iris)
+
+summary(anova_model)
+anova(anova_model)
+
 
 Remember to install and load necessary packages (install.packages() and library()) before using functions from external packages. 
 Additionally, always refer to the documentation for each function/package for more detailed usage instructions and options.
