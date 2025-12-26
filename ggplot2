@@ -1,0 +1,175 @@
+ggplot2
+
+The ggplot2 ( Grammar of Graphics ) is a free, open-source visualization package widely
+	 used in R Programming Language. It includes several layers on which it is 
+	governed. The layers are as follows:
+
+Layers with the grammar of graphics
+Data: The element is the data set itself.
+Aesthetics: The data is to map onto the Aesthetics attributes such as x-axis, y-axis,
+	color, fill, size, labels, alpha, shape, line width, line type.
+Geometrics: How our data being displayed using point, line, histogram, bar, boxplot.
+Facets: It displays the subset of the data using Columns and rows.
+Statistics: Binning, smoothing, descriptive, intermediate.
+Coordinates: the space between data and display using Cartesian, fixed, polar, limits.
+Themes: Non-data link.
+
+Importing the Dataset
+We will use the mtcars(motor trend car road test) dataset which is a built in dataset 
+in R. It comprise fuel consumption and 10 aspects of automobile design and performance
+ for 32 automobiles.
+
+
+install.packages("dplyr")
+library(dplyr)
+
+head(mtcars)
+
+Now we print the summary of mtcars dataset using summary function.
+
+
+summary(mtcars)
+
+1. Data Layer
+The data layer we define the source of the information to be visualize, let’s use the
+ mtcars dataset in the ggplot2 package.
+
+
+library(ggplot2)
+library(dplyr)
+
+ggplot(data = mtcars) +
+  labs(title = "MTCars Data Plot")
+
+2. Aesthetic Layer
+Here we will display and map dataset into certain aesthetics.
+
+
+ggplot(data = mtcars, aes(x = hp, y = mpg, col = disp))+
+ labs(title = "MTCars Data Plot")
+
+
+3. Geometric layer
+The geometric layer control the essential elements, see how our data being displayed
+ using point, line, histogram, bar, boxplot.
+
+
+
+ggplot(data = mtcars, aes(x = hp, y = mpg, col = disp)) +
+  geom_point() +
+  labs(title = "Miles per Gallon vs Horsepower",
+       x = "Horsepower",
+       y = "Miles per Gallon")
+
+
+# Adding size
+ggplot(data = mtcars, aes(x = hp, y = mpg, size = disp)) +
+  geom_point() +
+  labs(title = "Miles per Gallon vs Horsepower",
+       x = "Horsepower",
+       y = "Miles per Gallon")
+
+
+# Adding shape and color
+ggplot(data = mtcars, aes(x = hp, y = mpg, col = factor(cyl),
+       shape = factor(am))) +geom_point() +
+  labs(title = "Miles per Gallon vs Horsepower",
+       x = "Horsepower",
+       y = "Miles per Gallon")
+
+# Histogram plot
+ggplot(data = mtcars, aes(x = hp)) +
+  geom_histogram(binwidth = 5) +
+  labs(title = "Histogram of Horsepower",
+       x = "Horsepower",
+       y = "Count")
+
+4. Facet Layer
+The facet layer is used to split the data up into subsets of the entire dataset and it
+ allows the subsets to be visualized on the same plot. Here we separate rows according
+ to transmission type and Separate columns according to cylinders.
+
+
+p <- ggplot(data = mtcars, aes(x = hp, y = mpg, shape = factor(cyl))) + geom_point()
+
+p + facet_grid(am ~ .) +
+  labs(title = "Miles per Gallon vs Horsepower",
+       x = "Horsepower",
+       y = "Miles per Gallon")
+
+p <- ggplot(data = mtcars, aes(x = hp, y = mpg, shape = factor(cyl))) + geom_point()
+
+p + facet_grid(. ~ cyl) +
+  labs(title = "Miles per Gallon vs Horsepower",
+       x = "Horsepower",
+       y = "Miles per Gallon")
+
+5. Statistics layer
+This layer transforms our data using binning, smoothing, descriptive, intermediate
+ summaries.
+
+
+ggplot(data = mtcars, aes(x = hp, y = mpg)) +
+  geom_point() +
+  stat_smooth(method = lm, col = "red") +
+  labs(title = "Miles per Gallon vs Horsepower")
+
+6. Coordinates layer
+In these layers, data coordinates are mapped together to the mentioned plane of the
+ graphic and we adjust the axis and changes the spacing of displayed data with Control
+ plot dimensions.
+
+
+ggplot(data = mtcars, aes(x = wt, y = mpg)) +
+  geom_point() +
+  stat_smooth(method = lm, col = "red") +
+  scale_y_continuous("Miles per Gallon", limits = c(2, 35), expand = c(0, 0)) +
+  scale_x_continuous("Weight", limits = c(0, 25), expand = c(0, 0)) +
+  coord_equal() +
+  labs(title = "Miles per Gallon vs Weight",
+       x = "Weight",
+       y = "Miles per Gallon")
+
+ggplot(data = mtcars, aes(x = wt, y = hp, col = am)) +
+                        geom_point() + geom_smooth() +
+                        coord_cartesian(xlim = c(3, 6))
+
+7. Theme Layer
+This layer controls the finer points of display like the font size and background 
+color properties.
+
+Example 1: element_rect() function
+
+
+ggplot(data = mtcars, aes(x = hp, y = mpg)) +
+  geom_point() +
+  facet_grid(. ~ cyl) +
+  theme(plot.background = element_rect(fill = "blue", colour = "gray")) +
+  labs(title = "Miles per Gallon vs Horsepower")
+
+
+ggplot(data = mtcars, aes(x = hp, y = mpg)) +
+        geom_point() + facet_grid(am ~ cyl) + 
+        theme_gray()+
+ labs(title = "Miles per Gallon vs Horsepower")
+
+
+Contour plot for the mtcars dataset
+The ggplot2 in R provides various types of visualizations where more parameters can be
+ used included, like a contour plot. stat_density_2d to generate the 2D density contour
+ plot. The aesthetics x and y specify the variables on the x-axis and y-axis, 
+respectively. The fill aesthetic is set to ..level.. to map fill color to density 
+levels.
+
+
+install.packages("ggplot2")
+library(ggplot2)
+
+ggplot(mtcars, aes(x = wt, y = mpg)) +
+  stat_density_2d(aes(fill = ..level..), geom = "polygon", color = "white") +
+  scale_fill_viridis_c() + 
+  labs(title = "2D Density Contour Plot of mtcars Dataset",
+       x = "Weight (wt)",
+       y = "Miles per Gallon (mpg)",
+       fill = "Density") +
+  theme_minimal()
