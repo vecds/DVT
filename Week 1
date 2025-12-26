@@ -2,7 +2,7 @@
 Acquiring and plotting data in R involves several steps, depending on the data source and the specific visualization requirements.
 Here's a basic example of how to acquire data from a CSV file and plot it using R
 
-1.Acquiring Data: Suppose you have a CSV file named "data.csv" containing two columns: "x" and "y".
+1.Acquiring Data: Suppose you have a CSV file named "data.csv" containing two columns: "x" and
 //Load the data from CSV 
 data<-read.csv("data.csv") #set the working directory in sessions tab
 #Check the structure of the data > str(data)
