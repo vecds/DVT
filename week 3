@@ -1,0 +1,120 @@
+3. Financial analysis using Clustering, Histogram and HeatMap Program.
+
+Financial analysis helps in understanding income, savings, and loan patterns of customers. 
+R programming provides effective tools for analyzing and visualizing financial data. Histogram, 
+clustering, and heatmap techniques are used to analyze bank customer financial data.
+
+
+1. Data Collection and Preparation:
+Data preparation is an important step before performing financial analysis. In this step, raw data 
+is created, cleaned, and converted into a suitable format for analysis.
+
+First, a data frame is created in R to store the financial details of bank customers such as income, 
+savings, and loan amount.
+
+
+2. Clustering:
+Clustering is an unsupervised learning technique used to group data objects with similar characteristics.
+K-Means clustering divides the dataset into K groups based on similarity.
+
+In this analysis, K-Means is used to group bank customers based on income, savings, and loan amount.
+Before applying K-Means, the data is scaled so that all variables have equal importance.
+
+3. Histogram:
+A histogram is a graphical representation used to show the distribution of numerical data. It divides
+the data into intervals (bins) and displays the frequency of values in each interval using bars.
+
+In this financial analysis, a histogram is used to analyze the distribution of customer income.
+Use the hist() function in R to create histograms.
+Adjust parameters like bin size to get a clean understanding of the distribution.
+
+4.Heatmap:
+A heatmap is a data visualization technique that represents values using different colors. It helps in 
+easily identifying patterns, relationships, and variations in large datasets.
+
+In this analysis, a heatmap is used to visualize the financial data of customers such as income, savings, 
+and loan amount.
+Use the heatmap() function in R to create a heatmap of the correlation matrix.
+Adjust parameters like color scale and labels to enhance interpretability.
+
+
+#necessary libraries
+
+library(stats)
+library(graphics)
+
+Step 1: Data Preparation
+# Create customer financial data
+financial_data <- data.frame(
+  Income = c(6, 8, 4, 10, 5, 12),
+  Savings = c(2.5, 3.0, 1.5, 4.5, 2.0, 5.0),
+  Loan = c(1.2, 2.0, 0.8, 3.5, 1.0, 4.0)
+)
+
+row.names(financial_data) <- c("C1","C2","C3","C4","C5","C6")
+
+print(financial_data)
+
+
+#Step 2: Histogram
+
+Histogram is used to analyze the distribution of customer income.
+
+
+hist(financial_data$Income,
+     col = "lightgreen",
+     border = "black",
+     main = "Histogram of Customer Income",
+     xlab = "Annual Income (₹ Lakhs)")
+
+Most customers fall in the middle-income group
+
+A few high-income customers create right-side skewness
+
+#Step 3:Clustering Analysis (K-Means)
+
+# Scale the data
+scaled_data <- scale(financial_data)
+
+# Apply K-means clustering
+set.seed(123)
+kmeans_result <- kmeans(scaled_data, centers = 2)
+
+# Cluster assignment
+kmeans_result$cluster
+
+#Cluster Visualization:
+
+plot(scaled_data[,1], scaled_data[,2],
+     col = kmeans_result$cluster,
+     pch = 19,
+     xlab = "Income (Scaled)",
+     ylab = "Savings (Scaled)",
+     main = "Customer Segmentation Using K-Means")
+
+One cluster represents high-income, high-savings customers
+
+The other cluster represents low to middle-income customers
+
+Useful for targeted banking services
+
+#Step 4: Heatmap
+Heatmap shows the financial behavior patterns of customers.
+
+heatmap(as.matrix(financial_data),
+        col = heat.colors(256),
+        scale = "column",
+        main = "Heatmap of Customer Financial Data")
+
+Darker colors indicate higher values
+High-income customers show higher savings and loan amounts
+Clear financial patterns across customers are visible
+
+#Results and Discussion
+
+Histogram revealed income distribution and customer diversity
+Clustering divided customers into meaningful financial segments
+Heatmap provided a visual summary of customer financial strength
+This analysis can help banks in loan approval, risk assessment, and customer targeting.
+
+
