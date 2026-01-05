@@ -1,8 +1,8 @@
 Principal Component Analysis (PCA) is a multivariate statistical technique used to:
 
-Reduce data dimensionality
-Remove correlation among variables
-Retain maximum variance (information)
+->Reduce data dimensionality
+->Remove correlation among variables
+->Retain maximum variance (information)
 
 It transforms original correlated variables into new uncorrelated variables called principal components (PCs).
 
@@ -21,12 +21,13 @@ data <- data.frame(
 Since variables are measured on different scales, standardization is required.
 
 pca <- prcomp(data, scale. = TRUE)
+
 This ensures each variable contributes equally.
 
 PCA is based on:
 
-Covariance (or correlation) matrix
-Eigenvalues and eigenvectors
+->Covariance (or correlation) matrix
+->Eigenvalues and eigenvectors
 
 Where:
 
@@ -35,20 +36,20 @@ Eigenvalues → amount of variance explained
 
 summary(pca)
 
-Interpretation:
+#Interpretation:
 
 PC1 explains the maximum variance
 PC2 explains the next highest variance
 PC3 explains minimal variance
 If PC1 + PC2 ≥ 90%, dimensionality reduction is effective
 
-Principal Component Scores
+#Principal Component Scores
 pca$x
 
 These are the transformed observations in PC space.
 Each individual is now represented as:  (PC1,PC2,PC3)
 
-Visualization
+#Visualization
 plot(pca$x[,1], pca$x[,2],
      xlab = "PC1",
      ylab = "PC2",
@@ -61,8 +62,8 @@ Linear Discriminant Analysis (LDA) is a supervised dimensionality-reduction and 
 
 Key difference from PCA:
 
-PCA: ignores class labels, maximizes variance
-LDA: uses class labels, maximizes class separation.
+->PCA: ignores class labels, maximizes variance
+->LDA: uses class labels, maximizes class separation.
 
 we add a group (class) variable, which is required for LDA.
 
@@ -80,14 +81,14 @@ data <- data.frame(
 LDA finds directions (linear combinations of variables) that maximize the distance 
      between groups while minimizing variation within groups.
 
-We use the MASS package.
+->We use the MASS package.
 
 library(MASS)
 lda_model <- lda(Group ~ Height + Weight + Age, data = data)
 lda_model
 
-LD1 is the first (and only) discriminant function
-Larger coefficients → stronger influence
+->LD1 is the first (and only) discriminant function
+->Larger coefficients → stronger influence
 
 Here:
 
@@ -98,6 +99,7 @@ Only 1 Linear Discriminant (LD1)
 
 lda_values <- predict(lda_model)
 lda_values$x
+
 These values show where each observation lies on the LD1 axis.
 
 plot(lda_values$x,
@@ -108,19 +110,19 @@ plot(lda_values$x,
      main = "LDA with 3 Variables")
 legend("topright", legend = levels(data$Group),
        col = 1:2, pch = 19)
+
 Points far apart → good class separation
 Overlap → poor separation
 
 
 Correlation and Regression
 
-Correlation measures:
-
+#Correlation measures:
 Strength
 Direction
 of the relationship between two variables.
 
-Correlation coefficient (r):
+#Correlation coefficient (r):
 r = +1 → perfect positive
 r = −1 → perfect negative
 r = 0 → no relationship
@@ -131,7 +133,7 @@ data <- data.frame(
   Age    = c(20, 22, 23, 25, 28)
 )
 
-Correlation Matrix
+#Correlation Matrix
 cor(data)
 
 Variables	        Relationship
@@ -139,28 +141,32 @@ Height & Weight  	Strong positive
 Height & Age	    Positive
 Weight & Age	     Strong positive
 
-Taller people tend to weigh more
-Age increases with height and weight
+->Taller people tend to weigh more
+->Age increases with height and weight
 
-Visualizing Correlation:
+#Visualizing Correlation:
 pairs(data, main = "Scatterplot Matrix")
 
-Upward trend → positive correlation
-Straight line → strong correlation
+->Upward trend → positive correlation
+->Straight line → strong correlation
 
 REGRESSION ANALYSIS:
-Regression explains how:
 
+Regression explains how: 
 One variable (dependent)
 depends on one or more variables (independent)
 
 Example question:
 Can we predict Weight using Height and Age?
 
-Simple Linear Regression
+#Simple Linear Regression
+
 Weight predicted by Height
+
 model1 <- lm(Weight ~ Height, data = data)
 summary(model1)
+
+#Visualization 
 
 plot(data$Height, data$Weight,
      main = "Weight vs Height",
@@ -175,7 +181,6 @@ ANOVA is a statistical method used to test whether the means of a numeric variab
 Instead of comparing means two at a time, ANOVA compares all groups at once.
 
 ANOVA requires a categorical factor.
-We use the same variables and the same grouping used earlier.
 
 data <- data.frame(
   Height = c(150, 160, 165, 170, 180),
@@ -185,14 +190,18 @@ data <- data.frame(
 )
 
 Question
-Does Weight differ significantly between Group A and Group B?
-One-Way ANOVA Model:
+->Does Weight differ significantly between Group A and Group B?
+
+#One-Way ANOVA Model:
 
 anova_model <- aov(Weight ~ Group, data = data)
 summary(anova_model)
 
+Here:
 p < 0.05 → significant difference in means
 p ≥ 0.05 → no significant difference
+
+#Visualization
 
 boxplot(Weight ~ Group, data = data,
         main = "Weight by Group",
