@@ -1,0 +1,112 @@
+Principal Component Analysis (PCA) is a multivariate statistical technique used to:
+
+Reduce data dimensionality
+Remove correlation among variables
+Retain maximum variance (information)
+
+It transforms original correlated variables into new uncorrelated variables called principal components (PCs).
+
+We consider data from 5 individuals with:
+
+Height (cm)
+Weight (kg)
+Age (years)
+
+data <- data.frame(
+  Height = c(150, 160, 165, 170, 180),
+  Weight = c(50, 60, 65, 70, 80),
+  Age    = c(20, 22, 23, 25, 28)
+)
+
+Since variables are measured on different scales, standardization is required.
+
+pca <- prcomp(data, scale. = TRUE)
+This ensures each variable contributes equally.
+
+PCA is based on:
+
+Covariance (or correlation) matrix
+Eigenvalues and eigenvectors
+
+Where:
+
+Eigenvectors → directions of principal components
+Eigenvalues → amount of variance explained
+
+summary(pca)
+
+Interpretation:
+
+PC1 explains the maximum variance
+PC2 explains the next highest variance
+PC3 explains minimal variance
+If PC1 + PC2 ≥ 90%, dimensionality reduction is effective
+
+Principal Component Scores
+pca$x
+
+These are the transformed observations in PC space.
+Each individual is now represented as:  (PC1,PC2,PC3)
+
+Visualization
+plot(pca$x[,1], pca$x[,2],
+     xlab = "PC1",
+     ylab = "PC2",
+     main = "PCA with Three Variables")
+
+
+
+LDA
+Linear Discriminant Analysis (LDA) is a supervised dimensionality-reduction and classification technique.
+
+Key difference from PCA:
+
+PCA: ignores class labels, maximizes variance
+LDA: uses class labels, maximizes class separation.
+
+we add a group (class) variable, which is required for LDA.
+
+Example classes:
+Group A
+Group B
+
+data <- data.frame(
+  Height = c(150, 160, 165, 170, 180),
+  Weight = c(50, 60, 65, 70, 80),
+  Age    = c(20, 22, 23, 25, 28),
+  Group  = factor(c("A", "A", "A", "B", "B"))
+)
+
+LDA finds directions (linear combinations of variables) that maximize the distance 
+     between groups while minimizing variation within groups.
+
+We use the MASS package.
+
+library(MASS)
+lda_model <- lda(Group ~ Height + Weight + Age, data = data)
+lda_model
+
+LD1 is the first (and only) discriminant function
+Larger coefficients → stronger influence
+
+Here:
+
+Age contributes most to class separation
+Height and Weight also help.
+Number of LDs=min(p,k−1)
+Only 1 Linear Discriminant (LD1)
+
+lda_values <- predict(lda_model)
+lda_values$x
+These values show where each observation lies on the LD1 axis.
+
+plot(lda_values$x,
+     col = as.numeric(data$Group),
+     pch = 19,
+     xlab = "LD1",
+     ylab = "",
+     main = "LDA with 3 Variables")
+legend("topright", legend = levels(data$Group),
+       col = 1:2, pch = 19)
+Points far apart → good class separation
+Overlap → poor separation
