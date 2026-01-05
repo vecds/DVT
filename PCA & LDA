@@ -110,3 +110,60 @@ legend("topright", legend = levels(data$Group),
        col = 1:2, pch = 19)
 Points far apart → good class separation
 Overlap → poor separation
+
+
+Correlation and Regression
+
+Correlation measures:
+
+Strength
+Direction
+of the relationship between two variables.
+
+Correlation coefficient (r):
+r = +1 → perfect positive
+r = −1 → perfect negative
+r = 0 → no relationship
+
+data <- data.frame(
+  Height = c(150, 160, 165, 170, 180),
+  Weight = c(50, 60, 65, 70, 80),
+  Age    = c(20, 22, 23, 25, 28)
+)
+
+Correlation Matrix
+cor(data)
+
+Variables	        Relationship
+Height & Weight  	Strong positive
+Height & Age	    Positive
+Weight & Age	     Strong positive
+
+Taller people tend to weigh more
+Age increases with height and weight
+
+Visualizing Correlation:
+pairs(data, main = "Scatterplot Matrix")
+
+Upward trend → positive correlation
+Straight line → strong correlation
+
+REGRESSION ANALYSIS:
+Regression explains how:
+
+One variable (dependent)
+depends on one or more variables (independent)
+
+Example question:
+Can we predict Weight using Height and Age?
+
+Simple Linear Regression
+Weight predicted by Height
+model1 <- lm(Weight ~ Height, data = data)
+summary(model1)
+
+plot(data$Height, data$Weight,
+     main = "Weight vs Height",
+     xlab = "Height",
+     ylab = "Weight")
+abline(model1, col = "blue")
