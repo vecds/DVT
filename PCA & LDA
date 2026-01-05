@@ -167,3 +167,37 @@ plot(data$Height, data$Weight,
      xlab = "Height",
      ylab = "Weight")
 abline(model1, col = "blue")
+
+
+Analysis of Variance (ANOVA):
+
+ANOVA is a statistical method used to test whether the means of a numeric variable differ significantly across groups.
+Instead of comparing means two at a time, ANOVA compares all groups at once.
+
+ANOVA requires a categorical factor.
+We use the same variables and the same grouping used earlier.
+
+data <- data.frame(
+  Height = c(150, 160, 165, 170, 180),
+  Weight = c(50, 60, 65, 70, 80),
+  Age    = c(20, 22, 23, 25, 28),
+  Group  = factor(c("A", "A", "A", "B", "B"))
+)
+
+Question
+Does Weight differ significantly between Group A and Group B?
+One-Way ANOVA Model:
+
+anova_model <- aov(Weight ~ Group, data = data)
+summary(anova_model)
+
+p < 0.05 → significant difference in means
+p ≥ 0.05 → no significant difference
+
+boxplot(Weight ~ Group, data = data,
+        main = "Weight by Group",
+        xlab = "Group",
+        ylab = "Weight")
+
+Box centers → group means
+Separation → possible significance
