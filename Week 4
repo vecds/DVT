@@ -1,0 +1,117 @@
+4. Time-series analysis - stock market
+
+1: Create Stock Data
+
+We first need a dataset to analyze. Here, we will create a simple example of stock prices for 20 days.
+
+# Create a simple stock price dataset for 20 days
+stock_prices <- c(100, 102, 101, 103, 105, 107, 108, 110, 109, 111,
+                  112, 114, 115, 117, 116, 118, 120, 121, 123, 124)
+
+# Convert it to a time series object
+stock_ts <- ts(stock_prices, frequency = 1)  # daily data
+
+# Print the time series
+stock_ts
+
+
+Output:
+
+
+
+The stock prices generally show an increasing trend, but with some small fluctuations.
+
+2: Visualize the Stock Prices
+
+Visualization helps us see trends, patterns, and fluctuations in the stock prices.
+
+# Plot the stock prices
+plot(stock_ts, main="Stock Prices Over 20 Days", 
+     ylab="Price", xlab="Day", type="o", col="blue")
+
+Output:
+
+The plot shows a general upward trend.
+
+There are small drops on some days (e.g., day 3 and day 9), which is normal in stock price movements.
+
+3: Check Stationarity
+
+
+Stationarity means that the statistical properties of a time series (like mean and variance) do not change over time.
+ARIMA models require stationary data.
+
+# Load tseries library
+library(tseries)
+
+# Perform Augmented Dickey-Fuller (ADF) test
+adf_test <- adf.test(stock_ts)
+adf_test
+
+
+Output:
+
+
+p-value > 0.05 → the data is non-stationary.
+
+We apply differencing to make it stationary:
+
+# Differencing
+stock_diff <- diff(stock_ts)
+plot(stock_diff, type="o", main="Differenced Stock Prices", col="red")
+
+Output:
+
+# Check stationarity again
+adf.test(stock_diff)
+
+Output:
+
+Differenced series fluctuates around zero.
+
+p-value < 0.05 → the differenced series is stationary.
+
+4: Fit ARIMA Model and Forecast
+
+ARIMA (Auto-Regressive Integrated Moving Average) is a popular model for forecasting time series data.
+
+# Load forecast library
+library(forecast)
+
+# Fit ARIMA automatically
+fit <- auto.arima(stock_ts)
+
+# Show model summary
+summary(fit)
+
+# Forecast next 5 days
+forecasted <- forecast(fit, h = 5)
+
+# Plot the forecast
+plot(forecasted, main="Stock Price Forecast for Next 5 Days", col="darkgreen")
+
+
+Output:
+
+ARIMA model summary with parameters (p,d,q).
+
+Forecast plot showing predicted stock prices and confidence intervals.
+
+The forecast predicts slightly increasing prices for the next 5 days.
+
+The shaded area shows the uncertainty of the forecast.
+
+5: Observation and Conclusion
+
+Observation Template:
+
+The stock price shows an overall upward trend over 20 days.
+
+The original data was non-stationary, but after differencing, it became stationary.
+
+ARIMA model forecasts a slight increase in the next 5 days.
+
+Conclusion:
+Time series analysis helps understand trends and short-term predictions in stock prices.
+Although ARIMA gives a simple forecast, real stock prices are affected by many unpredictable 
+factors, so forecasts may not always be accurate.
