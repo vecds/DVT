@@ -1,0 +1,135 @@
+5. Visualization of various massive dataset - Finance - Healthcare - Census – Geospatial
+
+# Load necessary libraries
+library(ggplot2)
+library(dplyr)
+library(lubridate) # For handling dates
+
+# Sample Finance data (replace with your actual data)
+finance_data <- data.frame(
+  Date = seq(as.Date("2023-01-01"), as.Date("2023-12-31"), by
+             = "day"),
+  StockA = rnorm(365, mean = 100, sd = 10),
+  StockB = rnorm(365, mean = 150, sd = 15)
+)
+
+finance_data
+
+# Convert Date to Date object
+finance_data$Date <- ymd(finance_data$Date)
+
+finance_data
+
+# Line plot of stock prices over time
+ggplot(finance_data, aes(x = Date)) +
+  geom_line(aes(y = StockA, color = "Stock A")) +
+  geom_line(aes(y = StockB, color = "Stock B")) +
+  labs(title = "Stock Prices Over Time",
+       x = "Date",
+       y = "Price",
+       color = "Stock") +
+  theme_minimal()
+
+# Histogram of stock returns (example: Stock A)
+finance_data <- finance_data %>%
+  mutate(StockA_Return = c(NA, diff(StockA) / lag(StockA)[-1]))
+
+# Calculate returns
+ggplot(finance_data, aes(x = StockA_Return)) +
+  geom_histogram(bins = 30, fill = "skyblue", color = "black") +
+  labs(title = "Histogram of Stock A Returns",
+       x = "Returns",
+       y = "Frequency") +
+  theme_minimal()
+
+2. Healthcare Dataset Visualization (Example: Patient Data)
+
+# Sample Healthcare data (replace with your actual data)
+healthcare_data <- data.frame(
+  Age = sample(18:80, 500, replace = TRUE),
+  BMI = rnorm(500, mean = 25, sd = 5),
+  Disease = sample(c("Heart Disease", "Diabetes", "None"), 500,
+                   replace = TRUE)
+)
+
+healthcare_data
+
+# Scatter plot of Age vs. BMI, colored by Disease
+ggplot(healthcare_data, aes(x = Age, y = BMI, color = Disease)) + geom_point() +
+  labs(title = "Age vs. BMI by Disease",
+       x = "Age",
+       y = "BMI") +
+  theme_minimal()
+
+# Box plot of BMI by Disease
+ggplot(healthcare_data, aes(x = Disease, y = BMI)) +
+  geom_boxplot() +
+  labs(title = "BMI Distribution by Disease",
+       x = "Disease",
+       y = "BMI") +
+  theme_minimal()
+
+3. Census Dataset Visualization (Example: Population Data)
+
+# Sample Census data (replace with your actual data)
+census_data <- data.frame(
+  State = sample(state.name[1:10], 1000, replace = TRUE),
+  Population = sample(100000:10000000, 1000, replace =
+                        TRUE),
+  Income = rnorm(1000, mean = 50000, sd = 10000)
+)
+
+census_data
+
+# Bar plot of population by state (top 5 states)
+top_states <- census_data %>%
+  group_by(State) %>%
+  summarise(Total_Population = sum(Population)) %>%
+  top_n(5, Total_Population)
+ 
+top_states
+
+ggplot(top_states, aes(x = reorder(State, Total_Population), y =
+                         Total_Population)) +
+  geom_bar(stat = "identity", fill = "lightgreen") +
+  labs(title = "Top 5 States by Population",
+       x = "State",
+       y = "Total Population") +
+  coord_flip() + # Flip coordinates for better readability
+  theme_minimal()
+
+# Scatter plot of Population vs. Income
+ggplot(census_data, aes(x = Population, y = Income)) +
+  geom_point(alpha = 0.5) +
+  labs(title = "Population vs. Income",
+       x = "Population",
+       y = "Income") +
+  theme_minimal()
+
+
+4. Geospatial Dataset Visualization (Example: Points on a Map)
+
+# Load necessary libraries
+library(maps)
+library(ggmap)
+
+# Sample Geospatial data (replace with your actual data)
+geo_data <- data.frame(
+  Latitude = runif(100, min = 25, max = 49),
+  Longitude = runif(100, min = -124, max = -67)
+)
+
+geo_data
+
+# Get a map of the USA
+usa_map <- map_data("state")
+
+# Plot points on the map
+ggplot() +
+  geom_polygon(data = usa_map, aes(x = long, y = lat, group =group), fill = "lightgray", color = "black") +
+  geom_point(data = geo_data, aes(x = Longitude, y = Latitude),
+             color = "red", size = 2) +
+  labs(title = "Geospatial Points on USA Map") +
+  coord_quickmap() + # Important for correct map projection
+  theme_minimal()
+
