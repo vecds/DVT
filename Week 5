@@ -5,7 +5,8 @@ library(ggplot2)
 library(dplyr)
 library(lubridate) # For handling dates
 
-# Sample Finance data (replace with your actual data)
+# Sample Finance data 
+(seq(from, to, by, length.out, along.with, ...))
 finance_data <- data.frame(
   Date = seq(as.Date("2023-01-01"), as.Date("2023-12-31"), by
              = "day"),
