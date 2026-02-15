@@ -1,0 +1,94 @@
+6. Visualization on Streaming dataset (Stock market dataset, weather forecasting)
+
+Part 1: Stock Market Data Visualization (using quantmod for data retrieval)
+
+install.packages(c("ggplot2", "plotly", "dygraphs",
+                   "quantmod"))
+library(ggplot2)
+library(plotly)
+library(dygraphs)
+library(quantmod)
+
+
+# 1. Define the stock symbol and time period
+
+stock_symbol <- "AAPL" 
+
+# Example: Apple Inc.
+
+start_date <- "2023-01-01"
+end_date <- Sys.Date() 
+# Current date
+
+# 2. Retrieve stock data from Yahoo Finance using quantmod
+
+getSymbols(stock_symbol, from = start_date, to = end_date)
+
+# 3. Extract the adjusted closing prices
+
+stock_data <- Ad(get(stock_symbol)) 
+
+head(stock_data)
+
+# Ad() extracts adjusted
+# 4. Create a time series plot using dygraphs (interactive)
+
+dygraph(stock_data, main = paste(stock_symbol, "Adjusted
+Closing Price")) %>%
+  dyRangeSelector() # Add range selector for interactivity
+
+# 5. Create a candlestick chart using quantmod's chartSeries
+chartSeries(get(stock_symbol), name = paste(stock_symbol,
+                                            "Candlestick Chart"), theme = "white")
+
+# 6. Create a simple line plot using ggplot2 (static)
+
+stock_df <- data.frame(Date = index(stock_data), Price = as.numeric(stock_data))
+
+ggplot(stock_df, aes(x = Date, y = Price)) +
+  geom_line() +
+  labs(title = paste(stock_symbol, "Adjusted Closing Price"), x =
+         "Date", y = "Price") +
+  theme_minimal()
+
+Part 2: Weather Forecasting Data Visualization (simulated data)
+
+# 1. Simulate weather forecasting data (replace with actual data source)
+
+dates <- seq(as.Date("2023-10-26"), as.Date("2023-11-02"), by = "day")
+
+temperature <- rnorm(length(dates), mean = 15, sd = 3)
+
+temperature
+
+#Normal distribution for temp
+humidity <- runif(length(dates), min = 40, max = 90) 
+
+# Uniformdistribution for humidity
+
+weather_data <- data.frame(Date = dates, Temperature = temperature, Humidity = humidity)
+
+# 2. Create an interactive temperature plot using plotly
+
+plot_ly(weather_data, x = ~Date, y = ~Temperature, type =
+          "scatter", mode = "lines+markers") %>%
+  layout(title = "Temperature Forecast", xaxis = list(title =
+     "Date"), yaxis = list(title = "Temperature (°C)"))
+
+# 3. Create a bar chart for humidity using ggplot2
+ggplot(weather_data, aes(x = Date, y = Humidity)) +
+  geom_bar(stat = "identity", fill = "skyblue") +
+  labs(title = "Humidity Forecast", x = "Date", y = "Humidity
+(%)") +
+  theme_minimal()
+# 4. Create a combined plot with temperature and humidity(using ggplot2)
+
+ggplot(weather_data, aes(x = Date)) +
+  geom_line(aes(y = Temperature, color = "Temperature (°C)")) +
+  geom_line(aes(y = Humidity / 2, color = "Humidity (%)/2")) +
+  scale_y_continuous(name = "Temperature (°C)",
+  sec.axis = sec_axis(~. * 2, name = "Humidity (%)")) +
+  scale_color_manual(values = c("red", "blue")) +
+  labs(title = "Temperature and Humidity Forecast", x = "Date") +
+  theme_minimal()
+
