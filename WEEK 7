@@ -1,0 +1,91 @@
+7. Market-Basket Data analysis-visualization
+
+# Market Basket Analysis and Visualization in R
+# Install necessary packages if not already installed
+
+install.packages(c("arules", "arulesViz", "tidyverse"))
+
+# Load required libraries
+library(arules) # For association rule mining
+library(arulesViz) # For visualizing association rules
+library(tidyverse) # For data manipulation and visualization
+
+# 1. Load the dataset
+# Assuming your data is in a transaction format (e.g., each row
+represents a transaction)
+# Replace "your_data.csv" with the actual file path
+# Example using a built-in dataset (Groceries)
+data("Groceries")
+transaction_data <- Groceries
+
+# If you have a CSV, use the following:
+# transaction_data <- read.transactions("your_data.csv", sep =
+",", rm.duplicates = TRUE)
+
+ 2. Inspect the data
+summary(transaction_data) # Get summary statistics of the transactions
+
+# Inspect the first few transactions
+
+inspect(transaction_data[1:5])
+
+# Get item frequency
+itemFrequencyPlot(transaction_data, topN = 20, main = "Item Frequency Plot")
+
+3. Mine association rules using the Apriori algorithm
+# Set support and confidence thresholds
+
+rules <- apriori(transaction_data, parameter = list(support = 0.01, confidence = 0.2))
+
+# Inspect the generated rules
+inspect(rules[1:10])
+
+ 4. Filter and sort rules
+# Filter rules based on specific items (e.g., rules containing "whole milk")
+
+milk_rules <- subset(rules, items %pin% "whole milk")
+
+inspect(milk_rules)
+
+# Sort rules by confidence or support
+sorted_rules <- sort(rules, by = "confidence", decreasing = TRUE)
+inspect(sorted_rules[1:10])
+
+ 5. Visualize the rules
+# Scatter plot of support vs. confidence
+plot(rules, measure = c("support", "confidence"), shading = "lift")
+
+# Graph-based visualization
+plot(rules, method = "graph", control = list(type = "items"))
+
+# Grouped matrix visualization
+plot(rules, method = "grouped")
+
+# Parallel coordinates plot
+plot(rules, method = "paracoord", control = list(reorder = TRUE))
+
+6. Interactive visualizations (using arulesViz)
+# Interactive scatter plot
+interactiveScatterplot(rules)
+
+# Interactive graph
+subrules <- head(sort(rules, by = "lift"), 20) # Get top 20 rules for better visualization
+plot(subrules, method = "graph", control = list(type = "items", interactive = TRUE))
+
+7. Extract information from rules
+# Get the support, confidence, and lift values quality(rules)
+# Convert rules to a data frame for easier manipulation
+rules_df <- as(rules, "data.frame")
+head(rules_df)
+
+ 8. Save the rules (optional)
+# write.csv(rules_df, "association_rules.csv", row.names = FALSE)
+
+ 9. Additional analysis (e.g., redundant rules)
+# Remove redundant rules
+redundant_rules <- is.redundant(rules)
+rules_pruned <- rules[!redundant_rules]
+inspect(rules_pruned[1:10])
+# Example: Finding rules with a specific item in the RHS (righthand side)
+rhs_milk <- subset(rules, rhs %in% "whole milk")
+inspect(rhs_milk)
