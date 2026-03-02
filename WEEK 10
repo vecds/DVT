@@ -1,0 +1,98 @@
+8. Text visualization using web analytics
+
+# Install and load necessary packages
+# install.packages(c("tm", "wordcloud", "RColorBrewer", 
+"ggplot2", "dplyr", "tidytext")) # Uncomment if you don't have these
+
+library(tm)
+library(wordcloud)
+library(RColorBrewer)
+library(ggplot2)
+library(dplyr)
+library(tidytext)
+
+# 1. Load your text data
+# Assuming you have a text file named "web_analytics_data.txt"
+# Replace with your actual file path and data source.
+
+text_data <- readLines("web_analytics_data.txt")
+
+# 2. Create a Corpus (a collection of text documents)
+
+corpus <- Corpus(VectorSource(text_data))
+
+# 3. Text Preprocessing (cleaning and transforming the text)
+
+corpus <- tm_map(corpus, content_transformer(tolower)) # Convert to lowercase 
+corpus <- tm_map(corpus, removePunctuation) # Remove punctuation
+corpus <- tm_map(corpus, removeNumbers) # Remove numbers
+corpus <- tm_map(corpus, removeWords, stopwords("english"))
+
+# Remove common stop words (e.g., "the", "a", "is")
+corpus <- tm_map(corpus, stripWhitespace) # Remove extra whitespace
+
+# 4. Create a Term-Document Matrix (TDM)
+# This matrix shows the frequency of each term in each document.
+
+tdm <- TermDocumentMatrix(corpus)
+matrix <- as.matrix(tdm)
+words <- sort(rowSums(matrix), decreasing = TRUE)
+df <- data.frame(word = names(words), freq = words)
+
+# 5. Generate a Word Cloud
+set.seed(1234) # For reproducibility
+wordcloud(words = df$word, freq = df$freq, min.freq = 1,
+ max.words = 200, random.order = FALSE,
+ rot.per = 0.35, colors = brewer.pal(8, "Dark2"))   
+
+# 6. Bar Plot of Most Frequent Words (using ggplot2)
+top_words <- head(df, 20) # Get the top 20 words
+ggplot(top_words, aes(x = reorder(word, freq), y = freq)) +
+ geom_bar(stat = "identity", fill = "steelblue") +
+ coord_flip() + # Flip the coordinates for better readability
+ labs(title = "Top 20 Most Frequent Words",
+ x = "Words",
+ y = "Frequency")
+
+# 7. Sentiment Analysis (using tidytext and sentiment lexicons)
+# Assuming you have your text data in a data frame called 'text_df' with a 'text' column.
+# If not, convert your loaded text data to a data frame.
+text_df <- data.frame(text = text_data)
+tidy_text <- text_df %>%
+ unnest_tokens(word, text) # Tokenize the text into individual words
+
+sentiment_analysis <- tidy_text %>%
+ inner_join(get_sentiments("bing")) %>% # Use the Bing lexicon for sentiment analysis
+
+ count(sentiment) %>%
+ spread(sentiment, n, fill = 0) %>%
+ mutate(sentiment = positive - negative)
+
+# 8. Sentiment Bar Plot
+ggplot(sentiment_analysis, aes(x = "Sentiment", y = sentiment))
++
+ geom_bar(stat = "identity", fill =
+ifelse(sentiment_analysis$sentiment > 0, "green", "red")) +
+ labs(title = "Sentiment Analysis",
+ x = "Sentiment",
+ y = "Score (Positive - Negative)")
+
+# 9. Word Associations (using findAssocs)
+associations <- findAssocs(tdm, terms = "website", corlimit = 0.1) # Find words associated with "website"
+print(associations)
+
+# 10. Term Frequency-Inverse Document Frequency (TF-IDF)
+# TF-IDF highlights words that are important in a document relative to the entire corpus.
+tdm_tfidf <- TermDocumentMatrix(corpus, control = list(weighting = weightTfIdf))
+matrix_tfidf <- as.matrix(tdm_tfidf)
+words_tfidf <- sort(rowSums(matrix_tfidf), decreasing = TRUE)
+df_tfidf <- data.frame(word = names(words_tfidf), tfidf = words_tfidf)
+
+# 11. TF-IDF Bar Plot
+top_tfidf <- head(df_tfidf, 20)
+ggplot(top_tfidf, aes(x = reorder(word, tfidf), y = tfidf)) +
+ geom_bar(stat = "identity", fill = "purple") +
+ coord_flip() +
+ labs(title = "Top 20 TF-IDF Words",
+ x = "Words",
+ y = "TF-IDF Score")
